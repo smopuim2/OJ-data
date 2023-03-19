@@ -1,2 +1,2 @@
 ## OJ-data
-datas for OJ
+datas for GitOJ
