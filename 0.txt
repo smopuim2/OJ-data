@@ -1,0 +1,15 @@
+Title...
+-----
+Statement
+-----
+Input format
+-----
+Output format
+-----
+In #1
+---
+Out #1
+-----
+In #2
+---
+Out #2
