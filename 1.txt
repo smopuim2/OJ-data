@@ -1,13 +1,16 @@
 Hello,A+B
-2
+-----
 This is a test problem!
 You need to calc A+B.
-1
+-----
 A B
-1
+-----
 Hello,(A+B)!
-2
+-----
 2 3
+---
 Hello,5!
+-----
 -4 5.6
+---
 Hello,1.6!
