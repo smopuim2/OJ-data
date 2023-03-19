@@ -3,6 +3,8 @@ Hello,A+B
 This is a test problem!
 You need to calc A+B.
 -----
+For all data: 0<=A,B<=10
+-----
 A B
 -----
 Hello,(A+B)!
