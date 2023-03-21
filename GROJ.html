@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>GROJ</title>
+</head>
+<body>
+<script src="https://cdn.staticfile.org/jquery/2.2.4/jquery.min.js"></script>
+<script>
+function getprb(){
+  $("#cntnt").html("<b>Please wait ...</b>");
+  $.get(`https://raw.githubusercontent.com/smopuim2/OJ-data/main/Pcnt.txt`,function(getcnt){
+    if($("#pid").val()!="" && $("#pid").val()>=1 && $("#pid").val()<=getcnt){
+      $.get(`https://raw.githubusercontent.com/smopuim2/OJ-data/main/P${$("#pid").val()}.txt`,function(res){
+        let lin=res.toString().replace(/\n/g, "<br>").split("-----<br>");
+        let prb=`<h3>${lin[0]}</h3><hr><h3>Problem Statement</h3>${lin[1]}<h3>Constraints</h3>${lin[2]}<hr><h3>Input format</h3><div class="textdiv">${lin[3]}</div><h3>Output format</h3><div class="textdiv">${lin[4]}</div><hr><h3>Samples</h3>`;
+        for(let i=5;i<lin.length;i++){
+          prb+=`<h4>Input #${i-4}</h4><div class="textdiv">`+lin[i].split("---<br>").join(`</div><h4>Output #${i-4}</h4><div class="textdiv">`)+"</div>";
+        }
+        $("#cntnt").html(prb);
+      });
+    }else{
+        $("#cntnt").html("<b class='err'>Result not found ...</b>");
+    }
+  });
+}
+function getres(){
+  $.get(`https://raw.githubusercontent.com/smopuim2/OJ-data/main/Pcnt.txt`,function(getcnt){
+    if($("#pid").val()!="" && $("#pid").val()>=0 && $("#pid").val()<=getcnt){
+      $.get(`https://raw.githubusercontent.com/smopuim2/OJ-data/main/I${$("#pid").val()}.txt`,function(inf){
+        $.get(`https://raw.githubusercontent.com/smopuim2/OJ-data/main/O${$("#pid").val()}.txt`,function(outf){
+          $.post("https://tool.runoob.com/compile2.php",{code:$("#code").val(),token:"b6365362a90ac2ac7098ba52c13e352b",stdin:inf,language:7,fileext:"cpp"},function(ans){
+            console.log("'"+ans.output+"'\n=====\n'"+outf+"'");
+            if(ans.errors.match("\S")!=null){
+              $("#cntnt").val(ans.errors);
+              $("#cntnt").html("<b class='err'>CE:\n"+ans.errors.html()+"</b>");
+            }else if(ans.output!=outf){
+              $("#cntnt").html("<b class='err'>WA/TLE/...</b>");
+            }else{
+              $("#cntnt").html("<b class='rit'>AC</b>");
+            }
+          });
+        });
+      });
+    }
+  });
+}
+</script>
+<style>
+.stick{
+  position:fixed;
+  top:0;
+  left:0;
+  padding-left:5px;
+  padding-left:5px;
+  width:100%;
+  background-color:#D9D9D9;
+}
+a{
+  color:#0000FF;
+}
+input{
+  width:100px;
+}
+.lintext{
+  height:15px;
+  width:100px;
+  margin:0px;
+  resize:none;
+  vertical-align:bottom;
+}
+.prb{
+  margin-top:40px;
+  margin-bottom:5px;
+  margin-left:5px;
+  margin-right:5px;
+  padding:5px;
+  border:#808080 1px solid;
+  font-family:"dubai";
+}
+.err{
+  color:#A52A2A;
+}
+.rit{
+  color:#008000;
+}
+h3,h4{
+  color:#0000FF;
+  margin-top:3px;
+  margin-bottom:2px;
+}
+hr{
+  margin-top:5px;
+  margin-bottom:5px;
+}
+.textdiv{
+  font-family:"consolas";
+  color:#FFAD33;
+  border:#0000FF 1px solid;
+  padding:2px;
+}
+</style>
+<div class="stick">
+<a href="https://github.com/smopuim2/OJ-data">G</a><a href="https://c.runoob.com/compile/12/">R</a><a href="javascript:location.reload();">OJ</a>&emsp;<input type="number" id="pid" onblur="getprb();" placeholder="Prob.id">&nbsp;<textarea class="lintext" id="code" onblur="getres();" placeholder="C++ code"></textarea>
+<hr>
+</div>
+<div id="cntnt" class="prb">
+Welcome to GROJ !<br>
+GROJ : Github-Runoob-Online-Judge .<br>
+How to use?
+<ol>
+<li>Choose a problem ;</li>
+<li>Enter the Prob.id above ;</li>
+<li>Solve it with C++ ;</li>
+<li>Submit your code above ;</li>
+</ol>
+If you want to publish your own problem, just contact us .
+</div>
+</body>
+</html>
