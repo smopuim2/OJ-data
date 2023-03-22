@@ -30,12 +30,8 @@ function getres(){
       $.get(`https://raw.githubusercontent.com/smopuim2/OJ-data/main/I${$("#pid").val()}.txt`,function(inf){
         $.get(`https://raw.githubusercontent.com/smopuim2/OJ-data/main/O${$("#pid").val()}.txt`,function(outf){
           $.post("https://tool.runoob.com/compile2.php",{code:$("#code").val(),token:"b6365362a90ac2ac7098ba52c13e352b",stdin:inf,language:7,fileext:"cpp"},function(ans){
-            console.log("'"+ans.output+"'\n=====\n'"+outf+"'");
-            if(ans.errors.match("\S")!=null){
-              $("#cntnt").val(ans.errors);
-              $("#cntnt").html("<b class='err'>CE:\n"+ans.errors.html()+"</b>");
-            }else if(ans.output!=outf){
-              $("#cntnt").html("<b class='err'>WA/TLE/...</b>");
+            if(ans.output!=outf){
+              $("#cntnt").html("<b class='err'>CE/WA/...</b>");
             }else{
               $("#cntnt").html("<b class='rit'>AC</b>");
             }
