@@ -27,8 +27,10 @@ function getprb(){
 function getres(){
   $.get(`https://raw.githubusercontent.com/smopuim2/OJ-data/main/Pcnt.txt`,function(getcnt){
     if($("#pid").val()!="" && $("#pid").val()>=0 && $("#pid").val()<=getcnt){
+      $("#cntnt").val("<b>Loading test data ...</b>");
       $.get(`https://raw.githubusercontent.com/smopuim2/OJ-data/main/I${$("#pid").val()}.txt`,function(inf){
         $.get(`https://raw.githubusercontent.com/smopuim2/OJ-data/main/O${$("#pid").val()}.txt`,function(outf){
+          $("#cntnt").val("<b>Compiling & Running ...</b>");
           $.post("https://tool.runoob.com/compile2.php",{code:$("#code").val(),token:"b6365362a90ac2ac7098ba52c13e352b",stdin:inf,language:7,fileext:"cpp"},function(ans){
             if(ans.output!=outf){
               $("#cntnt").html("<b class='err'>CE/WA/...</b>");
