@@ -8,6 +8,9 @@
 <body>
 <script src="https://cdn.staticfile.org/jquery/2.2.4/jquery.min.js"></script>
 <script>
+function help(){
+  $("#cntnt").html("<h3>Help</h3>GROJ : Github-Runoob-Online-Judge .<br>How to use?<ol><li>Choose a problem ;</li><li>Enter the Prob.id above ;</li><li>Solve it with C++ ;</li><li>Submit your code above ;</li><li>Judger will give you:<ul><li>AC(accepted)</li><li>CE(compile error)/WA(wrong answer)/...</li></ul></li></ol>If you want to publish your own problem, just contact us .");
+}
 function getprb(){
   $("#cntnt").html("<b>Please wait ...</b>");
   $.get(`https://raw.githubusercontent.com/smopuim2/OJ-data/main/Pcnt.txt`,function(getcnt){
@@ -51,6 +54,7 @@ function getres(){
   top:0;
   left:0;
   padding-left:5px;
+  padding-right:5px;
   width:100%;
   background-color:#D9D9D9;
 }
@@ -101,26 +105,13 @@ hr{
 }
 </style>
 <div class="stick">
-<b><a href="https://github.com/smopuim2/OJ-data">G</a><a href="https://c.runoob.com/compile/12/">R</a><a href="javascript:location.reload();">OJ</a></b>&emsp;<input type="number" id="pid" onblur="getprb();" placeholder="Prob.id">&nbsp;<textarea class="lintext" id="code" onblur="getres();" placeholder="C++ code"></textarea>
+<b><a href="https://github.com/smopuim2/OJ-data">G</a><a href="https://c.runoob.com/compile/12/">R</a><a href="javascript:location.reload();">OJ</a></b>&emsp;<input type="number" id="pid" onblur="getprb();" placeholder="Prob.id">&nbsp;<textarea class="lintext" id="code" onblur="getres();" placeholder="C++ code"></textarea>&emsp;<button onclick="javascript:help();">?</button>
 <hr>
 </div>
 <div id="cntnt" class="prb">
-<h3>Welcome to GROJ !</h3>
-GROJ : Github-Runoob-Online-Judge .<br>
-How to use?
-<ol>
-<li>Choose a problem ;</li>
-<li>Enter the Prob.id above ;</li>
-<li>Solve it with C++ ;</li>
-<li>Submit your code above ;</li>
-<li>Judger will give you:
-<ul>
-<li>AC(accepted)</li>
-<li>CE(compile error)/WA(wrong answer)/...</li>
-</ul>
-</li>
-</ol>
-If you want to publish your own problem, just contact us .
+<h3>GROJ</h3>
+Welcome to GROJ !<br>
+Have a good time here ~
 </div>
 </body>
 </html>
