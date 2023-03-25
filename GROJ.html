@@ -17,7 +17,7 @@ function getprb(){
     if($("#pid").val()!="" && $("#pid").val()>=1 && $("#pid").val()<=getcnt){
       $.get(`https://raw.githubusercontent.com/smopuim2/OJ-data/main/P${$("#pid").val()}.txt`,function(res){
         let lin=res.toString().replace(/\n/g, "<br>").split("-----<br>");
-        let prb=`<h3>${lin[0]}</h3><hr><h3>Problem Statement</h3>${lin[1]}<h3>Constraints</h3>${lin[2]}<hr><h3>Input format</h3><div class="textdiv">${lin[3]}</div><h3>Output format</h3><div class="textdiv">${lin[4]}</div><hr><h3>Samples</h3>`;
+        let prb=`<h3>${lin[0]}</h3><hr><h3>Problem Statement</h3>${lin[1]}<h3>Constraints</h3>${lin[2]}<hr><h3>Input format</h3>${lin[3]}<h3>Output format</h3>${lin[4]}<hr><h3>Samples</h3>`;
         for(let i=5;i<lin.length;i++){
           prb+=`<h4>Input #${i-4}</h4><div class="textdiv">`+lin[i].split("---<br>").join(`</div><h4>Output #${i-4}</h4><div class="textdiv">`)+"</div>";
         }
