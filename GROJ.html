@@ -9,7 +9,7 @@
 <script src="https://cdn.staticfile.org/jquery/2.2.4/jquery.min.js"></script>
 <script>
 function help(){
-  $("#cntnt").html("<h3>Help</h3>GROJ : Github-Runoob-Online-Judge .<br>How to use?<ol><li>Choose a problem ;</li><li>Enter the Prob.id above ;</li><li>Solve it with C++ ;</li><li>Submit your code above ;</li><li>Judger will give you:<ul><li>AC(accepted)</li><li>CE(compile error)/WA(wrong answer)/...</li></ul></li></ol>If you want to publish your own problem, just contact us .");
+  $("#cntnt").html("<h3>Help</h3>GROJ : Github-Runoob-Online-Judge .<br>How to use?<ol><li>Run this website <a href='https://c.runoob.com/front-end/61/'>here</a> ;</li><li>Choose a problem ;</li><li>Enter the Prob.id above ;</li><li>Solve it with C++ ;</li><li>Submit your code above ;</li><li>Judger will give you:<ul><li>AC(accepted)</li><li>CE(compile error)/WA(wrong answer)/...</li></ul></li></ol>If you want to publish your own problem, just contact us .");
 }
 function getprb(){
   $("#cntnt").html("<b>Please wait ...</b>");
@@ -18,9 +18,10 @@ function getprb(){
       $.get(`https://raw.githubusercontent.com/smopuim2/OJ-data/main/P${$("#pid").val()}.txt`,function(res){
         let lin=res.toString().replace(/\n/g, "<br>").split("-----<br>");
         let prb=`<h3>${lin[0]}</h3><hr><h3>Problem Statement</h3>${lin[1]}<h3>Constraints</h3>${lin[2]}<hr><h3>Input format</h3>${lin[3]}<h3>Output format</h3>${lin[4]}<hr><h3>Samples</h3>`;
-        for(let i=5;i<lin.length;i++){
+        for(let i=5;i<lin.length-1;i++){
           prb+=`<h4>Input #${i-4}</h4><div class="textdiv">`+lin[i].split("---<br>").join(`</div><h4>Output #${i-4}</h4><div class="textdiv">`)+"</div>";
         }
+        prb+=`<h4>Test input</h4><details><summary>Click to view ...</summary><div class="textdiv">${lin[lin.length-1]}</div></details>`;
         $("#cntnt").html(prb);
       });
     }else{
@@ -29,20 +30,15 @@ function getprb(){
   });
 }
 function getres(){
-  $.get(`https://raw.githubusercontent.com/smopuim2/OJ-data/main/Pcnt.txt`,function(getcnt){
+  $.get("https://raw.githubusercontent.com/smopuim2/OJ-data/main/Pcnt.txt",function(getcnt){
     if($("#pid").val()!="" && $("#pid").val()>=0 && $("#pid").val()<=getcnt){
-      $("#cntnt").val("<b>Loading test data ...</b>");
-      $.get(`https://raw.githubusercontent.com/smopuim2/OJ-data/main/I${$("#pid").val()}.txt`,function(inf){
-        $.get(`https://raw.githubusercontent.com/smopuim2/OJ-data/main/O${$("#pid").val()}.txt`,function(outf){
-          $("#cntnt").val("<b>Compiling & Running ...</b>");
-          $.post("https://tool.runoob.com/compile2.php",{code:$("#code").val(),token:"b6365362a90ac2ac7098ba52c13e352b",stdin:inf,language:7,fileext:"cpp"},function(ans){
-            if(ans.output!=outf){
-              $("#cntnt").html("<b class='err'>CE/WA/...</b>");
-            }else{
-              $("#cntnt").html("<b class='rit'>AC</b>");
-            }
-          });
-        });
+      $.get(`https://raw.githubusercontent.com/smopuim2/OJ-data/main/D${$("#pid").val()}.txt`,function(dataf){
+        console.log(`[${dataf}][${$("#output").val()}]`);
+        if($("#output").val()!=dataf){
+          $("#cntnt").html("<b class='err'>Incorrect ...</b>");
+        }else{
+          $("#cntnt").html("<b class='rit'>Correct !</b>");
+        }
       });
     }
   });
@@ -59,8 +55,11 @@ function getres(){
   background-color:#D9D9D9;
 }
 a{
-  color:#6600FF;
+  color:#000000;
   text-decoration:none;
+}
+.title{
+  color:#6600FF;
   vertical-align:bottom;
 }
 input{
@@ -101,16 +100,18 @@ hr{
   font-family:"consolas";
   color:#FF8600;
   border:#0000FF 1px solid;
-  padding:2px;
+  padding:5px;
+  overflow:auto;
 }
 </style>
 <div class="stick">
-<b><a href="https://github.com/smopuim2/OJ-data">G</a><a href="https://c.runoob.com/compile/12/">R</a><a href="javascript:location.reload();">OJ</a></b>&emsp;<input type="number" id="pid" onblur="getprb();" placeholder="Prob.id">&nbsp;<textarea class="lintext" id="code" onblur="getres();" placeholder="C++ code"></textarea>&emsp;<button onclick="javascript:help();">?</button>
+<b><a class="title" href="https://github.com/smopuim2/OJ-data">G</a><a class="title" href="https://c.runoob.com/compile/12/">R</a><a class="title" href="javascript:location.reload();">OJ</a></b>&emsp;<input type="number" id="pid" onblur="getprb();" placeholder="Prob.id">&nbsp;<textarea class="lintext" id="output" onblur="getres();" placeholder="Test output"></textarea>&emsp;<button onclick="javascript:help();">?</button>
 <hr>
 </div>
 <div id="cntnt" class="prb">
 Welcome to GROJ !<br>
-Have a good time here ~
+If you are new here, read helps carefully .<br>
+Have a good time !
 </div>
 </body>
 </html>
