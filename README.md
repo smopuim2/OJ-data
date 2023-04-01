@@ -1,3 +1,3 @@
 # GitCoding
 
-Data and Website for GROJ!
+Data and Website!
