@@ -9,7 +9,7 @@
 <script src="https://cdn.staticfile.org/jquery/2.2.4/jquery.min.js"></script>
 <script>
 function help(){
-  $("#cntnt").html("<h3>Help</h3>GitCoding : Supported by Github .<br>How to use?<ol><li>Choose a problem ;</li><li>Enter the Prob.id above ;</li><li>Solve it with C++ ;</li><li>Submit your code's output above ;</li><li>Judger will give you :<ul><li>Correct</li><li>Incorrect</li></ul></li></ol>If you want to publish your own problem, just contact us .");
+  $("#cntnt").html("<h3>Help</h3>GitCoding : Supported by Github .<br>How to use ?<ol><li>Choose a problem ;</li><li>Enter the Prob.id above ;</li><li>Solve it with C++ ;</li><li>Submit your code's output above ;</li><li>Judger will give you :<ul><li>Correct</li><li>Incorrect</li></ul></li></ol>If you want to publish your own problem, just contact us .");
 }
 function getprb(){
   $("#cntnt").html("<b>Please wait ...</b>");
@@ -30,7 +30,7 @@ function getprb(){
   });
 }
 function getres(){
-  $.get("https://raw.githubusercontent.com/smopuim2/OJ-data/main/Pcnt.txt?x=${Math.random()}",function(getcnt){
+  $.get(`https://raw.githubusercontent.com/smopuim2/OJ-data/main/Pcnt.txt?x=${Math.random()}`,function(getcnt){
     if($("#pid").val()!="" && $("#pid").val()>=0 && $("#pid").val()<=getcnt){
       $.get(`https://raw.githubusercontent.com/smopuim2/OJ-data/main/D${$("#pid").val()}.txt?x=${Math.random()}`,function(dataf){
         console.log(`[${dataf}][${$("#output").val()}]`);
