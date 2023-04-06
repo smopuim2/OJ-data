@@ -1,0 +1,27 @@
+[POJ 1852] Ants
+-----
+An army of N ants walk on a horizontal pole of length L cm, each with a constant speed of 1 cm/s. When a walking ant reaches an end of the pole, it immediatelly falls off it. When two ants meet they turn back and start walking in opposite directions. We know the original positions of ants on the pole, X cm from the left. Unfortunately, we do not know the directions in which the ants are walking. Your task is to compute the earliest time P and the latest possible time Q needed for all ants to fall off the pole.
+And, there are T test cases.
+-----
+All input numbers <= 1000000
+-----
+T
+L_0 N_0
+X_0_0 X_0_1 ... X_0_(N_0-1)
+...
+L_(T-1) N_(T-1)
+X_(T-1)_0 X_(T-1)_1 ... X_0_(N_(T-1)-1)
+-----
+P_0 Q_0
+...
+P_(T-1) Q_(T-1)
+-----
+1
+10 3
+2 6 7
+---
+4 8
+-----
+1
+214 7
+11 12 7 13 176 23 191
