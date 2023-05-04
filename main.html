@@ -7,7 +7,7 @@
 <script src="https://cdn.staticfile.org/jquery/2.2.4/jquery.min.js"></script>
 <script>
 function help(){
-  $("#cntnt").html("<h3>Help</h3>GitCoding : Supported by <a href='https://github.com/smopuim2/OJ-data'>Github</a> .<br>You can find a lot of interesting problems on it .<br>How to use ?<ol><li>Choose a problem ;</li><li>Enter the Prob.id above ;</li><li>Solve it with C++ ;</li><li>Submit your code's output above ;</li><li>Judger will give you :<ul><li>Correct</li><li>Incorrect</li></ul></li></ol>If you want to publish your own problem, just contact us .");
+  $("#cntnt").html("<h3>Help</h3>GitCoding : Supported by <a href='https://github.com/smopuim2/OJ-data'>Github</a> .<br>You can find a lot of interesting problems on it .<br>How to use ?<ol><li>Choose a problem ;</li><li>Enter the Prob.id above ;</li><li>Solve it with C++ ;</li><li>Submit your code's output above ;</li><li>Judger will give you :<ul><li>Correct</li><li>Incorrect</li></ul></li></ol>If you want to publish your own problem, just <a href='mailto:1470185505@qq.com'>contact us</a> .");
 }
 function getprb(){
   $("#cntnt").html("<b>Please wait ...</b>");
@@ -85,12 +85,16 @@ function getres(){
   padding-top:3px;
   padding-left:5px;
   padding-right:5px;
+  padding-bottom:7px;
   width:100%;
-  background-color:#D9D9D9;
+  background-color:#CCE6FF;
 }
 a{
-  color:#000000;
+  color:#666666;
   text-decoration:none;
+}
+a:hover{
+  color:#000000;
 }
 .title{
   color:#0000FF;
@@ -143,7 +147,6 @@ hr{
 <body>
 <div class="stick">
 &nbsp;<b class="title">GitCoding</b>&emsp;<input type="number" id="pid" onblur="getprb();" placeholder="Prob.id">&nbsp;<textarea class="lintext" id="output" onblur="getres();" placeholder="Test output"></textarea>&emsp;<button onclick="javascript:help();">?</button>
-<hr>
 </div>
 <div id="cntnt" class="prb">
 Welcome to GitCoding !<br>
